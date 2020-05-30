@@ -1,49 +1,329 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AstroWorldZodiac</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Homepage | Astrology</title>
+    <link href="~/css/bootstrap.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/vendors/select2/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="~/vendors/bootstrap_select2/css/select2-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/wow/css/animate.css">
+    <link rel="stylesheet" href="~/css/sweetalert2.css">
+    <link rel="stylesheet" href="~/vendors/revolution-slider/css/layers.css">
+    <link rel="stylesheet" href="~/vendors/revolution-slider/css/navigation.css">
+    <link rel="stylesheet" href="~/vendors/revolution-slider/css/settings.css">
+    <link rel="stylesheet" href="~/css/custom.css">
+    <link rel="icon" type="image/png" href="~/images1/icons/favicon.ico" />
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
 </head>
+
 <body>
+    <div class="preloader" style="position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  backface-visibility: hidden;
+  background: #ffffff;">
+        <div class="preloader-image" style="position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -150px 0 0 -300px;">
+            <img src="~/images/preloader.gif" alt="loader-missing">
+        </div>
+    </div>
+    <section class="backgroundclr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12 tpbanner_align">
+                    <a href="~/#" class="header_border1 hidden-xs font12">Donations</a>
+                    <div class="header_border hidden-xs font12">
+                        <a 
+                            asp-controller="Home"
+                            asp-action="Signin">Sign in</a>
+                    </div>
+                    <div class="header_border hidden-xs font12">
+                        <a 
+                           asp-controller="Home"
+                           asp-action="Signup">Sign up</a>
+                    </div>
+                    <div class="clearfix visible-xs-block"></div>
+                    <span class="header_border header_text hidden-xs font12">Follow Us</span>
+                    <span class="head_icons">
+                        <a href="~/#"><i class="fa fa-facebook-square header_icons fa-lg"></i></a>
+                        <a href="~/#"><i class="fa fa-twitter-square header_icons fa-lg"></i></a>
+                        <a href="~/#"><i class="fa fa-google-plus-square header_icons fa-lg" aria-hidden="true"></i></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row text-right">
+            <div class="col-md-5 col-sm-2"></div>
+            <div class="col-md-7 col-sm-10 col-xs-12">
+                <div class="clearfix visible-sm-block"></div>
+                <div class="row">
+                    <div class="col-sm-2 col-xs-2 head_signs">
+                       
+                        <a asp-controller="Home"
+                           asp-action="Index">
+                           <div class="bg-info header_bg center-block">
+                                <img src="~/images/home1.png" alt="Image missing">
+                            </div>
+                            <div class="text-center info1 font13 hidden-xs">Home</div>
+                        </a>
+                    </div>
+                    <div class="col-sm-2 col-xs-2 text-center head_signs">
+                        <a 
+                           asp-controller="Home"
+                           asp-action="Appointment">
+                            <div class="bg-info header_bg center-block">
+                                <img src="~/images/calendar.png" alt="Image missing">
+                            </div>
+                            <div class="text-center info1 font13 hidden-xs">Appointment</div>
+                        </a>
+                       
+                 
+                   
+                    </div>
+                    <div class="col-sm-2 col-xs-2 text-center head_signs">
+                        <a asp-controller="Home"
+                           asp-action="Feedbacks">
+                            <div class="bg-info header_bg center-block">
+                                <img src="~/images/heart.png" alt="Image missing">
+                            </div>
+                            <div class="text-center info1 font13 hidden-xs">Feedbacks</div>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-2 col-xs-2 text-center head_signs">
+                        <a asp-controller="Home"
+                           asp-action="Astrology">
+                            <div class="bg-info header_bg center-block">
+                                <img src="~/images/man-with-tie.png" alt="Image missing">
+                            </div>
+                            <div class="text-center info1 font13 hidden-xs">Astrologers</div>
+                        </a>
+                     
+                    </div>
+                   
+                    <div class="col-sm-2 col-xs-2 text-center head_signs">
+                        <a 
+                           asp-controller="Home"
+                           asp-action="Mantra">
+                 
+                            <div class="bg-info header_bg center-block">
+                                <img src="~/images/yin-and-yang.png" alt="Image missing">
+                            </div>
+                            <div class="text-center info1 font13 hidden-xs">Life Mantras</div>
+                        </a>
+                    </div>
+                    <div class="col-sm-2 col-xs-2 text-center head_signs">
+                        <a href="~/#">
+                            <div class="bg-info header_bg center-block">
+                                <img src="~/images/calendar.png" alt="Image missing">
+                            </div>
+                            <div class="text-center info1 font13 hidden-xs">Your Appointment Status</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AstroWorldZodiac</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                <div class="row">
+                    <div class="navbar-header col-md-4 col-sm-5 col-xs-12 nav_head">
+                        <button type="button" class="navbar-toggle m-t-20 font18" data-toggle="collapse"
+                                data-target="#myNavbar">
+                            <span>
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                        <a href="~/index-2.html">
+                            <img src="~/images/leo-sign1.png" alt="logo missing" class="brand_name"/> <span class="text-info font42">Astrology</span>
+                       </a>
+                        <p class="brand_name text-primary font12 head_info">My Astroworld</p>
+
+                    </div>
+                    <div class="navbar-collapse collapse col-md-8 col-sm-7 col-xs-12 nav navbar-right nav_menubar"
+                         id="myNavbar">
+                        <ul class="nav navbar-nav header_nav">
+                            <li class="header_li active">
+                                <a href="~/index-2.html" class="text-info">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="header_li">
+                                <a 
+                                   asp-controller="Home"
+                                   asp-action="Index">Astrological Stars</a>
+                            </li>
+                            <li class="header_li">
+                                <a 
+                                   asp-controller="Home"
+                                   asp-action="Gemestone">Gemestone</a>
+                            </li>
+                            <li class="header_li">
+                                <a 
+                                    asp-controller="Home"
+                                    asp-action="Blog">Blogger</a>
+                            </li>
+                            
+                          
+                            <li class="header_li">
+                                <a 
+                                   asp-controller="Home"
+                                   asp-action="contact">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
+    @RenderBody()
+    <section class="footer_texture m-t-65">
         <div class="container">
-            &copy; 2020 - AstroWorldZodiac - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-md-6 col-xs-12 footer_section_align">
+                    <span class="text-white font18">Get Your </span><span class="text-primary font24">
+                        Daily Horoscope<span class="text-white font18">,</span> Daily Lovescope
+                    </span><span class="text-white font18">and</span><span class="text-primary font24"> Daily Tarot </span> <span class="text-white font18">Directly In Your Inbox</span>
+                </div>
+                <div class="col-md-6 col-xs-12 footer_section_align">
+
+                    <form method="post" action="https://demo.lorvent.com/astrology/subscribe.php" id="subscribe">
+                        <div class="form-group">
+
+                            <div class="input-group label_align">
+
+                                <input type="email" class="form-control input-lg input_email sub_input" placeholder="Email Address" name="email" id="email">
+
+                                <span class="input-group-addon subscribe_align">
+                                    <button type="submit" class="subscribe btn btn-sm ">
+                                        <span>
+                                            <img src="~/images/mail-sent.png" alt="mailicon">
+                                        </span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    </section>
+    <section class="footer_bg">
+        <div class="container footer_align">
+            <div class="row">
+                <div class="clearfix visible-sm-block"></div>
+                <div class="col-md-12 col-sm-6 col-xs-12 m-t-40">
+                    <h5>ZODIAC SIGN FINDER</h5>
+                    <hr>
+                    <p class="p-t-5">The Zodiac is made up of 12 Sun Signs. Your Date of Birth determines which one you are:</p>
+                    <div class="col-md-12 footer_select_section">
+                        <select class="single form-control footer_select month">
+                            <option value="">Choose</option>
+                            <option value="1">Jan</option>
+                            <option value="2">Feb</option>
+                            <option value="3">Mar</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">Jun</option>
+                            <option value="7">July</option>
+                            <option value="8">Aug</option>
+                            <option value="9">Sep</option>
+                            <option value="10">Oct</option>
+                            <option value="11">Nov</option>
+                            <option value="12">Dec</option>
+                        </select>
+                        <div class="footer_select_section">
+                            <select class="single form-control footer_select2 day">
+                                <option value="">Choose</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                <option>16</option>
+                                <option>17</option>
+                                <option>18</option>
+                                <option>19</option>
+                                <option>20</option>
+                                <option>21</option>
+                                <option>22</option>
+                                <option>23</option>
+                                <option>24</option>
+                                <option>25</option>
+                                <option>26</option>
+                                <option>27</option>
+                                <option>28</option>
+                                <option>29</option>
+                                <option>30</option>
+                                <option>31</option>
+                            </select>
+                            <button class="btn btn-sm btn-primary clear_btn zodiacname">Submit</button>
+                        </div>
+                    </div>
+
+                  
+                </div>
+            </div>
+            <div class="elements_desc">
+                <hr>
+            </div>
+            <div class="row text-center">
+                <p>
+                    made with &nbsp;<img src="~/images/heartf.png" alt="heart loading" />&nbsp; by
+                    <a href="~/https://themeforest.net/user/jyostna"
+                       class="footer_color_variant">Anosha Aziz</a>
+                </p>
+            </div>
+            <a href="~/#" class="back-to-top">
+                <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+            </a>
+        </div>
+    </section>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/vendors/select2/js/select2.min.js"></script>
+    <script src="~/vendors/swiper/js/swiper.min.js"></script>
+    <script src="~/vendors/wow/js/wow.min.js"></script>
+    <script src="~/vendors/sweetalert2/js/sweetalert2.min.js"></script>
+    <script src="~/vendors/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/vendors/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/js/custom.js"></script>
 </body>
+
 </html>
