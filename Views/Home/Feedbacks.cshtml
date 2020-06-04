@@ -1,22 +1,45 @@
-﻿
+﻿@model AstroWorldZodiac.Models.Entities.Feedback
+
 @{
     ViewData["Title"] = "Feedbacks";
 }
 
-
 <section class="home_bg m-t-25">
+    
     <div class="container">
-        <div class="appointment">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4><b>Let us know about your Experience</b></h4>
+        @if (ViewBag.Success != null && ViewBag.Success)
+        {
+            <div class="alert alert-success alert-dismissible show" role="alert">
+                <strong>Success!</strong> Thank you for providing feedback.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="appointment">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4><b>Let us know about your Experience</b></h4>
+                    </div>
                 </div>
-            </div>
-            <div class="row float-right">
-                <textarea rows="10" cols="50"></textarea>
-                <button type="button" class="btn btn-success float-right" style="height: 90px; width: 130px"
-                        >Success</button>
-            </div>
-        </div>
+                <form asp-action="Feedbacks" method="post">
+                    <div class="row float-right">
+                        <div class="col-md-12">
+                            <textarea asp-for="Text" class="form-control" rows="5"></textarea>
+                        </div>
+
+                        <div class="col-md-12" style="margin-top: 25px">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </div>
+
+                </form>
+            </div> 
+        }
+        
     </div>
 </section>
+

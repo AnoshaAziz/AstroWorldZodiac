@@ -4,157 +4,22 @@ using AstroWorldZodiac.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AstroWorldZodiac.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200531002909_UserFirstLastNameAdded")]
+    partial class UserFirstLastNameAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("AstroWorldZodiac.Models.Entities.Appointment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("AppointmentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DOB")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("GemStoneId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GemStoneId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Appointments");
-                });
-
-            modelBuilder.Entity("AstroWorldZodiac.Models.Entities.Feedback", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Feedbacks");
-                });
-
-            modelBuilder.Entity("AstroWorldZodiac.Models.Entities.GemStone", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GemStone");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "A good building stone should have compact fine crystalline structure free from cavities, cracks or patches of soft or loose material. The stones with such texture are strong and durable.",
-                            Name = "Ruby"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "A good building stone should have compact fine crystalline structure free from cavities, cracks or patches of soft or loose material. The stones with such texture are strong and durable.",
-                            Name = "Pearl"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "A good building stone should have compact fine crystalline structure free from cavities, cracks or patches of soft or loose material. The stones with such texture are strong and durable.",
-                            Name = "Red Coral"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "A good building stone should have compact fine crystalline structure free from cavities, cracks or patches of soft or loose material. The stones with such texture are strong and durable.",
-                            Name = "Emerald"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "A good building stone should have compact fine crystalline structure free from cavities, cracks or patches of soft or loose material. The stones with such texture are strong and durable.",
-                            Name = "Topaz"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Description = "A good building stone should have compact fine crystalline structure free from cavities, cracks or patches of soft or loose material. The stones with such texture are strong and durable.",
-                            Name = "Diamond"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Description = "A good building stone should have compact fine crystalline structure free from cavities, cracks or patches of soft or loose material. The stones with such texture are strong and durable.",
-                            Name = "Yellow Sapphire"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Description = "A good building stone should have compact fine crystalline structure free from cavities, cracks or patches of soft or loose material. The stones with such texture are strong and durable.",
-                            Name = "Blue Sapphire"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Description = "A good building stone should have compact fine crystalline structure free from cavities, cracks or patches of soft or loose material. The stones with such texture are strong and durable.",
-                            Name = "Cat's Eyes"
-                        });
-                });
 
             modelBuilder.Entity("AstroWorldZodiac.Models.Entities.User", b =>
                 {
@@ -356,24 +221,6 @@ namespace AstroWorldZodiac.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("AstroWorldZodiac.Models.Entities.Appointment", b =>
-                {
-                    b.HasOne("AstroWorldZodiac.Models.Entities.GemStone", "GemStone")
-                        .WithMany("Appointments")
-                        .HasForeignKey("GemStoneId");
-
-                    b.HasOne("AstroWorldZodiac.Models.Entities.User", "User")
-                        .WithMany("Appointments")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("AstroWorldZodiac.Models.Entities.Feedback", b =>
-                {
-                    b.HasOne("AstroWorldZodiac.Models.Entities.User", "User")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

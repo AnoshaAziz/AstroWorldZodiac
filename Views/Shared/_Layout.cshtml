@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using AstroWorldZodiac.Models.Entities
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 
 
@@ -25,13 +30,16 @@
     <link rel="stylesheet" href="~/vendors/revolution-slider/css/settings.css">
     <link rel="stylesheet" href="~/css/custom.css">
     <link rel="icon" type="image/png" href="~/images1/icons/favicon.ico" />
-    
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-
+    <style>
+        .alert-success {
+            background-color: #dff0d8;
+        }
+    </style>
 </head>
 
 <body>
@@ -54,17 +62,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-xs-12 tpbanner_align">
-                    <a href="~/#" class="header_border1 hidden-xs font12">Donations</a>
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
                     <div class="header_border hidden-xs font12">
-                        <a 
-                            asp-controller="Home"
-                            asp-action="Signin">Sign in</a>
+                        <a asp-controller="Home"
+                           asp-action="Index">Welcome @User.Identity.Name!</a>
                     </div>
                     <div class="header_border hidden-xs font12">
-                        <a 
-                           asp-controller="Home"
-                           asp-action="Signup">Sign up</a>
+                        <a class="form-inline" asp-controller="Account" asp-action="Logout">
+                            Logout
+                        </a>
                     </div>
+                    }
+                    else
+                    {
+                    <div class="header_border hidden-xs font12">
+                        <a asp-controller="Account"
+                           asp-action="Login">Sign in</a>
+                    </div>
+                    <div class="header_border hidden-xs font12">
+                        <a asp-controller="Account"
+                           asp-action="Register">Sign up</a>
+                    </div>
+                    }
+                  
                     <div class="clearfix visible-xs-block"></div>
                     <span class="header_border header_text hidden-xs font12">Follow Us</span>
                     <span class="head_icons">
@@ -75,165 +97,141 @@
                 </div>
             </div>
         </div>
+
+
+
+
     </section>
     <div class="container">
         <div class="row text-right">
             <div class="col-md-5 col-sm-2"></div>
             <div class="col-md-7 col-sm-10 col-xs-12">
                 <div class="clearfix visible-sm-block"></div>
+
                 <div class="row">
                     <div class="col-sm-2 col-xs-2 head_signs">
-                       
+
                         <a asp-controller="Home"
                            asp-action="Index">
-                           <div class="bg-info header_bg center-block">
+                            <div class="bg-info header_bg center-block">
                                 <img src="~/images/home1.png" alt="Image missing">
                             </div>
                             <div class="text-center info1 font13 hidden-xs">Home</div>
                         </a>
                     </div>
                     <div class="col-sm-2 col-xs-2 text-center head_signs">
-                        <a 
-                           asp-controller="Home"
+                        <a asp-controller="Home"
                            asp-action="Appointment">
                             <div class="bg-info header_bg center-block">
                                 <img src="~/images/calendar.png" alt="Image missing">
                             </div>
                             <div class="text-center info1 font13 hidden-xs">Appointment</div>
                         </a>
-                       
-                 
-                   
+
+
+
                     </div>
-                    <div class="col-sm-2 col-xs-2 text-center head_signs">
-                        <a asp-controller="Home"
-                           asp-action="Feedbacks">
-                            <div class="bg-info header_bg center-block">
-                                <img src="~/images/heart.png" alt="Image missing">
-                            </div>
-                            <div class="text-center info1 font13 hidden-xs">Feedbacks</div>
-                        </a>
-                    </div>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <div class="col-sm-2 col-xs-2 text-center head_signs">
+                            <a asp-controller="Home"
+                               asp-action="Status">
+                                <div class="bg-info header_bg center-block">
+                                    <img src="~/images/calendar.png" alt="Image missing">
+                                </div>
+                                <div class="text-center info1 font13 hidden-xs"></div>
+                                Appointment Status
+                            </a>
+                        </div>
+                    }
 
                     <div class="col-sm-2 col-xs-2 text-center head_signs">
                         <a asp-controller="Home"
-                           asp-action="Astrology">
+                           asp-action="Gemestone">
                             <div class="bg-info header_bg center-block">
                                 <img src="~/images/man-with-tie.png" alt="Image missing">
                             </div>
                             <div class="text-center info1 font13 hidden-xs">Astrologers</div>
                         </a>
-                     
+
                     </div>
-                   
+
                     <div class="col-sm-2 col-xs-2 text-center head_signs">
-                        <a 
-                           asp-controller="Home"
+                        <a asp-controller="Home"
                            asp-action="Mantra">
-                 
+
                             <div class="bg-info header_bg center-block">
                                 <img src="~/images/yin-and-yang.png" alt="Image missing">
                             </div>
                             <div class="text-center info1 font13 hidden-xs">Life Mantras</div>
                         </a>
                     </div>
-                    <div class="col-sm-2 col-xs-2 text-center head_signs">
-                        <a href="~/#">
-                            <div class="bg-info header_bg center-block">
-                                <img src="~/images/calendar.png" alt="Image missing">
-                            </div>
-                            <div class="text-center info1 font13 hidden-xs">Your Appointment Status</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <div class="row">
-                    <div class="navbar-header col-md-4 col-sm-5 col-xs-12 nav_head">
-                        <button type="button" class="navbar-toggle m-t-20 font18" data-toggle="collapse"
-                                data-target="#myNavbar">
-                            <span>
-                                <i class="fa fa-bars" aria-hidden="true"></i>
-                            </span>
-                        </button>
-                        <a href="~/index-2.html">
-                            <img src="~/images/leo-sign1.png" alt="logo missing" class="brand_name"/> <span class="text-info font42">Astrology</span>
-                       </a>
-                        <p class="brand_name text-primary font12 head_info">My Astroworld</p>
 
-                    </div>
-                    <div class="navbar-collapse collapse col-md-8 col-sm-7 col-xs-12 nav navbar-right nav_menubar"
-                         id="myNavbar">
-                        <ul class="nav navbar-nav header_nav">
-                            <li class="header_li active">
-                                <a href="~/index-2.html" class="text-info">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="header_li">
-                                <a 
-                                   asp-controller="Home"
-                                   asp-action="Index">Astrological Stars</a>
-                            </li>
-                            <li class="header_li">
-                                <a 
-                                   asp-controller="Home"
-                                   asp-action="Gemestone">Gemestone</a>
-                            </li>
-                            <li class="header_li">
-                                <a 
-                                    asp-controller="Home"
-                                    asp-action="Blog">Blogger</a>
-                            </li>
-                            
-                          
-                            <li class="header_li">
-                                <a 
-                                   asp-controller="Home"
-                                   asp-action="contact">Contact Us</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-    @RenderBody()
-    <section class="footer_texture m-t-65">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-xs-12 footer_section_align">
-                    <span class="text-white font18">Get Your </span><span class="text-primary font24">
-                        Daily Horoscope<span class="text-white font18">,</span> Daily Lovescope
-                    </span><span class="text-white font18">and</span><span class="text-primary font24"> Daily Tarot </span> <span class="text-white font18">Directly In Your Inbox</span>
-                </div>
-                <div class="col-md-6 col-xs-12 footer_section_align">
-
-                    <form method="post" action="https://demo.lorvent.com/astrology/subscribe.php" id="subscribe">
-                        <div class="form-group">
-
-                            <div class="input-group label_align">
-
-                                <input type="email" class="form-control input-lg input_email sub_input" placeholder="Email Address" name="email" id="email">
-
-                                <span class="input-group-addon subscribe_align">
-                                    <button type="submit" class="subscribe btn btn-sm ">
-                                        <span>
-                                            <img src="~/images/mail-sent.png" alt="mailicon">
-                                        </span>
-                                    </button>
-                                </span>
-                            </div>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <div class="col-sm-2 col-xs-2 text-center head_signs">
+                            <a asp-controller="Home"
+                               asp-action="Feedbacks">
+                                <div class="bg-info header_bg center-block">
+                                    <img src="~/images/heart.png" alt="Image missing">
+                                </div>
+                                <div class="text-center info1 font13 hidden-xs">Feedbacks</div>
+                            </a>
                         </div>
-                    </form>
+                    }
+
                 </div>
             </div>
         </div>
-    </section>
+        <header>
+            <nav class="navbar">
+                <div class="container">
+                    <div class="row">
+                        <div class="navbar-header col-md-4 col-sm-5 col-xs-12 nav_head">
+                            <button type="button" class="navbar-toggle m-t-20 font18" data-toggle="collapse"
+                                    data-target="#myNavbar">
+                                <span>
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <a asp-controller="Home"
+                               asp-action="Index">
+                                <img src="~/images/leo-sign1.png" alt="logo missing" class="brand_name" /> <span class="text-info font42">Astrology</span>
+                            </a>
+                            <p class="brand_name text-primary font12 head_info">My Astroworld</p>
+
+                        </div>
+                        <div style="float: left !important; margin-left: 100px;" class="navbar-collapse collapse col-md-8 col-sm-7 col-xs-12 nav navbar-right nav_menubar"
+                             id="myNavbar">
+                            <ul class="nav navbar-nav header_nav">
+                                <li class="header_li active">
+                                    <a href="~/index-2.html" class="text-info">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="header_li">
+                                    <a asp-controller="Home"
+                                       asp-action="Index">Astrological Stars</a>
+                                </li>
+
+                                <li class="header_li">
+                                    <a asp-controller="Home"
+                                       asp-action="Blog">Blogger</a>
+                                </li>
+
+
+                                <li class="header_li">
+                                    <a asp-controller="Home"
+                                       asp-action="contact">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        @RenderBody()
+       
     <section class="footer_bg">
         <div class="container footer_align">
             <div class="row">
@@ -297,7 +295,7 @@
                         </div>
                     </div>
 
-                  
+
                 </div>
             </div>
             <div class="elements_desc">
@@ -315,15 +313,16 @@
             </a>
         </div>
     </section>
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/vendors/select2/js/select2.min.js"></script>
-    <script src="~/vendors/swiper/js/swiper.min.js"></script>
-    <script src="~/vendors/wow/js/wow.min.js"></script>
-    <script src="~/vendors/sweetalert2/js/sweetalert2.min.js"></script>
-    <script src="~/vendors/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="~/vendors/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
-    <script src="~/js/custom.js"></script>
+    </div>
+        <script src="~/js/jquery.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/vendors/select2/js/select2.min.js"></script>
+        <script src="~/vendors/swiper/js/swiper.min.js"></script>
+        <script src="~/vendors/wow/js/wow.min.js"></script>
+        <script src="~/vendors/sweetalert2/js/sweetalert2.min.js"></script>
+        <script src="~/vendors/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="~/vendors/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+        <script src="~/js/custom.js"></script>
 </body>
 
 </html>

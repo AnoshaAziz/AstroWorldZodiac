@@ -1,0 +1,58 @@
+﻿
+    @model AstroWorldZodiac.Models.AppointmentStatusViewModel
+
+    @{
+        ViewData["Title"] = "Status";
+    }
+
+
+   
+ 
+        <h4>Appointments</h4>
+        <hr />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>FullName</th>
+
+                    <th>AppointmentDate</th>
+                    <th>Category</th>
+                    <th>GemStone</th>
+
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                    @{ var row = 1;}
+                    @foreach (var appointment in Model.Appointments)
+                    {
+                        <tr>
+                        <td>@(row++)</td>
+                        <td>@appointment.FullName</td>
+                        <td>@appointment.AppointmentDate</td>
+                        <td>@appointment.Category</td>
+                        <td>@appointment.GemStone.Name</td>
+                        <td>@appointment.DOB</td>
+                        <td>@appointment.Gender</td>
+
+                        <td>@appointment.Email</td>
+                        <td>@appointment.Phone</td>
+                        <td><span class="badge badge-sucess" >BOOKED</span> </td>
+
+
+                        </tr>
+
+                    }
+               
+
+
+            </tbody>
+        </table>
+
+

@@ -1,4 +1,5 @@
-﻿
+﻿@model AstroWorldZodiac.Models.Account.UserRegistrationModel
+
 @{
     Layout = null;
 }
@@ -7,7 +8,7 @@
 <html lang="en">
 <head>
     <title>Login V13</title>
-   
+
     <link rel="icon" type="image/png" href="~/images1/icons/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="~/vendor1/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -25,39 +26,44 @@
 
     <div class="limiter">
         <div class="container-login100">
-            <div class="login100-more" style="background-position: center !important; background: url('@Url.Content("~/images1/WhatsApp Image 2020-05-19 at 2.14.59 AM.jpeg")');" ></div>
+            <div class="login100-more" style="background-position: center !important; background: url('@Url.Content("~/images1/WhatsApp Image 2020-05-19 at 2.14.59 AM.jpeg")');"></div>
             <div class="wrap-login100 p-l-50 p-r-50 p-t-20 p-b-20">
-                <form class="login100-form validate-form">
+                <form asp-action="Register" class="login100-form validate-form">
                     <span class="login100-form-title p-b-30">
                         Sign Up
                     </span>
-
-                    <div class="wrap-input100 validate-input" data-validate="Name is required">
-                        <span class="label-input100">Full Name</span>
-                        <input class="input100" type="text" name="name" placeholder="Name...">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="wrap-input100 validate-input" data-validate="First Name is required">
+                        <span asp-for="FirstName" class="label-input100">First Name</span>
+                        <input asp-for="FirstName" class="input100" placeholder="First Name...">
                         <span class="focus-input100"></span>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                     <div class="wrap-input100 validate-input" data-validate="Last Name is required">
+                        <span asp-for="LastFirstName" class="label-input100">Last Name</span>
+                        <input asp-for="LastName" class="input100" placeholder="Last Name...">
+                        <span class="focus-input100"></span>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <span class="label-input100">Email</span>
-                        <input class="input100" type="text" name="email" placeholder="Email addess...">
+                    <div class="wrap-input100 validate-input" data-validate="FirstName is required">
+                        <span asp-for="Email" class="label-input100">Email</span>
+                        <input asp-for="Email" class="input100" />
                         <span class="focus-input100"></span>
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
-
-                
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <span class="label-input100">Password</span>
-                        <input class="input100" type="text" name="pass" placeholder="*************">
+                    <div class="wrap-input100 validate-input" data-validate="FirstName is required">
+                        <span asp-for="Password" class="label-input100">Password</span>
+                        <input asp-for="Password" class="input100" />
                         <span class="focus-input100"></span>
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Repeat Password is required">
-                        <span class="label-input100">Repeat Password</span>
-                        <input class="input100" type="text" name="repeat-pass" placeholder="*************">
+                    <div class="wrap-input100 validate-input" data-validate="FirstName is required">
+                        <span asp-for="ConfirmPassword" class="label-input100">Confirm Password</span>
+                        <input asp-for="ConfirmPassword" class="input100" />
                         <span class="focus-input100"></span>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
-
                     <div class="flex-m w-full p-b-33">
                         <div class="contact100-form-checkbox">
                             <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
@@ -82,9 +88,8 @@
                             </button>
                         </div>
 
-                   
-                        <a asp-controller="Home"
-                           asp-action="Signin">Sign in><i class="fa fa-long-arrow-right m-l-5"></i></a>
+                        <a asp-controller="Account"
+                           asp-action="Login">Sign in><i class="fa fa-long-arrow-right m-l-5"></i></a>
                     </div>
                 </form>
             </div>

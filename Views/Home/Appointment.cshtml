@@ -1,81 +1,138 @@
-﻿
+﻿@using AstroWorldZodiac.Models.Entities
+@model AstroWorldZodiac.Models.Entities.Appointment
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 @{
     ViewData["Title"] = "Appointment";
 }
 
-    <section class="home_bg m-t-25">
-        <div class="container">
-            <div class="appointment">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4><b>Want an appointment? Please send your details</b></h4>
-                        Make your time valuable, dont wast your time, book an appointment here and make sure your are the first person to visit us.
-                    </div>
-                </div>
-                <div class="row">
-                    <form action="#" class="m-t-40">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="ap_date">Date of appointment</label>
-                                <input type="date" class="form-control" id="ap_date" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="category">Category</label>
-                                <select name="category" id="category" class="form-control">
-                                    <option value="Numerology">Numerology</option>
-                                    <option value="Horoscope">Horoscope</option>
-                                    <option value="Vasthu shastra">Vasthu shastra</option>
-                                    <option value="My partner">My partner</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input class="form-control" id="subject" placeholder="Subject">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Full name" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="">Select</option>
-                                    <option value="male">Male</option>
-                                    <option value="male">Female</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="dob">DOB</label>
-                                <input type="date" class="form-control" id="dob" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="mail">Email</label>
-                                <input type="email" class="form-control" id="mail" placeholder="Email" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="mobile">Mobile Number</label>
-                                <input type="text" class="form-control" id="mobile" placeholder="Mobile" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <input type="submit" class="btn btn-primary" value="Book Here">
-                        </div>
-                    </form>
+<section class="home_bg m-t-25">
+    <div class="container">
+        <div class="appointment">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>
+                        <b>
+                            Want an appointment?
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <span>Please send your details</span>
+                            }
+                            else
+                            {
+                                <span>Please login to make an appointment</span>
+                            }
+                        </b>
+                    </h4>
+                    Make your time valuable, dont waste your time, book an appointment here and make sure your are the first person to visit us.
                 </div>
             </div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                @if (ViewBag.Success != null && ViewBag.Success)
+                {
+                    <div class="alert alert-success alert-dismissible show" role="alert">
+                        <strong>Success!</strong> your appointment has been booked.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <form asp-action="Appointment" class="m-t-40">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="AppointmentDate">Date of appointment</label>
+                                    <input asp-for="AppointmentDate" type="date" class="form-control" id="ap_date" required>
+                                    <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Category">Category</label>
+                                    <select asp-for="Category" id="category" class="form-control" required>
+                                        <option value="">Select</option>
+                                        <option value="Numerology">Numerology</option>
+                                        <option value="Horoscope">Horoscope</option>
+                                        <option value="My partner">My partner</option>
+                                    </select>
+                                    <span asp-validation-for="Category" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="GemStoneId">GemStone Specialist</label>
+                                    <select asp-for="GemStoneId" id="GemStoneId" class="form-control" required
+                                            asp-items="@(new SelectList(ViewBag.GemStones,"Id","Name"))">
+                                        <option value="">Select</option>
+                                    </select>
+                                    <span asp-validation-for="GemStoneId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @*<div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Subject">Specialist</label>
+                <input asp-for="Subject" class="form-control" id="subject" placeholder="Specialist">
+            </div>
+        </div>*@
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="FullName">Full Name</label>
+                                    <input asp-for="FullName" type="text" required class="form-control" id="name" placeholder="Full name" required>
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Gender">Gender</label>
+                                    <select asp-for="Gender" required id="gender" class="form-control">
+                                        <option value="">Select</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    <span asp-validation-for="Gender" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="DOB">DOB</label>
+                                    <input asp-for="DOB" required type="date" class="form-control" id="dob" required>
+                                    <span asp-validation-for="DOB" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Email">Email</label>
+                                    <input asp-for="Email" value="@User.Identity.Name" type="email" class="form-control" id="mail" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Phone">Mobile Number</label>
+                                    <input asp-for="Phone" required type="text" class="form-control" id="mobile" placeholder="Mobile" required>
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary" value="Book Here">
+                            </div>
+                        </form>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-12 m-t-40">
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Login</a>
+                    </div>
+                </div>
+            }
         </div>
-    </section>
+    </div>
+</section>

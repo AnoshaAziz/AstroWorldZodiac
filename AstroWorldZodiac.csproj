@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20200603193229_AppointmentTableAdded.cs" />
+    <Compile Remove="Data\Migrations\20200603193229_AppointmentTableAdded.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200603203505_UserIdInAppointnment.cs" />
+    <Compile Remove="Data\Migrations\20200603203505_UserIdInAppointnment.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200604111926_Anosha.cs" />
+    <Compile Remove="Data\Migrations\20200604111926_Anosha.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200604173941_AddGemStoreIdInAppointment.cs" />
+    <Compile Remove="Data\Migrations\20200604173941_AddGemStoreIdInAppointment.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
@@ -46,6 +57,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
 
 </Project>
